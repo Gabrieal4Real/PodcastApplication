@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.gabrieal.podcastapplication.models.podcast.PodcastListModel
 import com.gabrieal.podcastapplication.network.api.Resource
 import com.gabrieal.podcastapplication.network.api.Resource.Status.ERROR
 import com.gabrieal.podcastapplication.network.api.Resource.Status.LOADING
@@ -13,11 +14,11 @@ import com.gabrieal.podcastapplication.repository.PodcastRepository
 
 class PodcastViewModelImpl(private val podcastRepository: PodcastRepository) : ViewModel(),
     PodcastViewModel {
-    private val podcastListLiveData = MutableLiveData<Any?>()
+    private val podcastListLiveData = MutableLiveData<PodcastListModel?>()
     private val isLoading = MutableLiveData<Boolean>()
     private val isError = MutableLiveData<ResourceError?>()
 
-    private val fetchPodcastListObserver: Observer<Resource<Any>> = Observer { t ->
+    private val fetchPodcastListObserver: Observer<Resource<PodcastListModel>> = Observer { t ->
         processPodcastListResponse(t)
     }
 
@@ -34,7 +35,7 @@ class PodcastViewModelImpl(private val podcastRepository: PodcastRepository) : V
         return isError
     }
 
-    private fun processPodcastListResponse(response: Resource<Any>?) {
+    private fun processPodcastListResponse(response: Resource<PodcastListModel>?) {
         when (response?.status) {
             LOADING -> {
                 isLoading.value = true
@@ -51,7 +52,7 @@ class PodcastViewModelImpl(private val podcastRepository: PodcastRepository) : V
         }
     }
 
-    override fun observePodcastList(): LiveData<Any?> {
+    override fun observePodcastList(): LiveData<PodcastListModel?> {
         return podcastListLiveData
     }
 }

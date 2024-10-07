@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <data>
-        <variable
-            name="podcastViewModel"
-            type="com.gabrieal.podcastapplication.viewmodel.podcast.PodcastViewModelImpl" />
-    </data>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/rlLevelRoot"
@@ -14,11 +9,28 @@
         android:background="@color/white"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="@string/bfm_player"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPodcastList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_podcast_list_view" />
     </LinearLayout>
 
 </layout>

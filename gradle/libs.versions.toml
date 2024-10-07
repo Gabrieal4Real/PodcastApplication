@@ -5,6 +5,7 @@ constraintlayout = "2.1.4"
 converterGson = "2.11.0"
 daggerAndroidSupport = "2.52"
 daggerAndroid = "2.52"
+glide = "4.16.0"
 gradle = "8.4.2"
 gson = "2.11.0"
 koinAndroid = "4.0.0"
@@ -31,6 +32,7 @@ converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref
 dagger = { module = "com.google.dagger:dagger", version.ref = "daggerAndroidSupport" }
 dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "daggerAndroid" }
 dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "daggerAndroidSupport" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }

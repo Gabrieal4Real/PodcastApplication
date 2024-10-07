@@ -29,16 +29,25 @@ class MainActivity : BaseActivity() {
     private fun onBindData() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding?.lifecycleOwner = this
-        binding?.podcastViewModel = podcastViewModel
     }
 
     private fun setupUI() {
         binding?.rvPodcastList?.layoutManager = LinearLayoutManager(this)
-        val adapter = PodcastListAdapter(null)
-        binding?.rvPodcastList?.adapter = adapter
+
     }
 
     private fun observeResponses() {
+        podcastViewModel.observeLoading().observe(this, {
 
+        })
+
+        podcastViewModel.observeError().observe(this, {
+
+        })
+
+        podcastViewModel.observePodcastList().observe(this, {
+            val adapter = PodcastListAdapter(it?.toList())
+            binding?.rvPodcastList?.adapter = adapter
+        })
     }
 }

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PodcastApplication</string>
+    <string name="bfm_player">BFM Player</string>
+    <string name="live">LIVE</string>
 </resources>
