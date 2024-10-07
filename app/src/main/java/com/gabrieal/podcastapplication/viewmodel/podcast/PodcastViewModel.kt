@@ -11,4 +11,5 @@ interface PodcastViewModel {
 
     fun observePodcastList(): LiveData<PodcastListModel?>
 
+    fun selectedPodcast(selectedMp3: String)
 }

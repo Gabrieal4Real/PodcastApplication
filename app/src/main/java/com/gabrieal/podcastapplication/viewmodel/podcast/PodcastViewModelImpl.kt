@@ -14,9 +14,12 @@ import com.gabrieal.podcastapplication.repository.PodcastRepository
 
 class PodcastViewModelImpl(private val podcastRepository: PodcastRepository) : ViewModel(),
     PodcastViewModel {
+
     private val podcastListLiveData = MutableLiveData<PodcastListModel?>()
     private val isLoading = MutableLiveData<Boolean>()
     private val isError = MutableLiveData<ResourceError?>()
+
+    val nowPlayingPodcast = MutableLiveData<String?>()
 
     private val fetchPodcastListObserver: Observer<Resource<PodcastListModel>> = Observer { t ->
         processPodcastListResponse(t)
@@ -54,5 +57,9 @@ class PodcastViewModelImpl(private val podcastRepository: PodcastRepository) : V
 
     override fun observePodcastList(): LiveData<PodcastListModel?> {
         return podcastListLiveData
+    }
+
+    override fun selectedPodcast(selectedMp3: String) {
+        nowPlayingPodcast.value = selectedMp3
     }
 }

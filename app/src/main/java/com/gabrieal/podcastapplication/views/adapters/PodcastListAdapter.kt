@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gabrieal.podcastapplication.R
 import com.gabrieal.podcastapplication.models.podcast.PodcastItemModel
+import com.gabrieal.podcastapplication.views.activities.MainActivity
 import java.util.Date
 
-class PodcastListAdapter(private val mList: List<PodcastItemModel>?) : RecyclerView
+class PodcastListAdapter(
+    private val mList: List<PodcastItemModel>?,
+    private val mainActivity: MainActivity
+) : RecyclerView
 .Adapter<PodcastListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,6 +29,11 @@ class PodcastListAdapter(private val mList: List<PodcastItemModel>?) : RecyclerV
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val podcastListModel = mList?.get(position)
+
+        holder.itemView.setOnClickListener {
+            mainActivity.playAudio(podcastListModel)
+        }
+
         holder.tvPodcastTitle.text = podcastListModel?.title
 
         setupType(holder, podcastListModel)
@@ -55,7 +64,7 @@ class PodcastListAdapter(private val mList: List<PodcastItemModel>?) : RecyclerV
 
         podcastListModel?.data?.interviewtime?.let {
             holder.tvPodcastPublishedDate.visibility = View.VISIBLE
-            val date = Date(it.toLong()*1000)
+            val date = Date(it.toLong() * 1000)
             holder.tvPodcastPublishedDate.text = DateFormat.format("dd MMM yyyy, hh:mm a", date)
         }
     }
