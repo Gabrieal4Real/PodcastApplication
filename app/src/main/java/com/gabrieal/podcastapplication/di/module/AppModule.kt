@@ -1,15 +1,16 @@
 package com.gabrieal.podcastapplication.di.module
 
-import com.gabrieal.podcastapplication.network.http.BaseHttpClient
-import com.gabrieal.podcastapplication.network.http.HttpClient
-import com.gabrieal.podcastapplication.repository.PodcastRepository
-import com.gabrieal.podcastapplication.repository.PodcastRepositoryImpl
-import com.gabrieal.podcastapplication.viewmodel.podcast.PodcastViewModelImpl
-import org.koin.androidx.viewmodel.dsl.viewModel
+import com.gabrieal.podcastapplication.data.http.BaseHttpClient
+import com.gabrieal.podcastapplication.data.http.HttpClient
+import com.gabrieal.podcastapplication.data.repository.PodcastRepository
+import com.gabrieal.podcastapplication.data.repository.PodcastRepositoryImpl
+import com.gabrieal.podcastapplication.ui.viewmodel.podcast.PodcastViewModelImpl
+import org.koin.core.module.dsl.bind
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 val appModule = module {
-    single<HttpClient> { BaseHttpClient() }
-    single<PodcastRepository> { PodcastRepositoryImpl(get()) }
-    viewModel { PodcastViewModelImpl(get()) }
+    singleOf(::BaseHttpClient) { bind<HttpClient>() }
+    singleOf(::PodcastRepositoryImpl) { bind<PodcastRepository>() }
+    singleOf(::PodcastViewModelImpl)
 }
