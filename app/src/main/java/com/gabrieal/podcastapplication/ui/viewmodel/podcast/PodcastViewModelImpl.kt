@@ -19,7 +19,7 @@ class PodcastViewModelImpl(private val podcastRepository: PodcastRepository) : V
     private val isLoading = MutableLiveData<Boolean>()
     private val isError = MutableLiveData<ResourceError?>()
 
-    val nowPlayingPodcast = MutableLiveData<String?>()
+    private val nowPlayingPodcast = MutableLiveData<String?>()
 
     private val fetchPodcastListObserver: Observer<Resource<PodcastListModel>> = Observer { t ->
         processPodcastListResponse(t)
